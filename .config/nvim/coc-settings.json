@@ -1,0 +1,13 @@
+{
+    "languageserver": {
+        "clojure-lsp": {
+            "command": "clojure-lsp",
+            "filetypes": ["clojure", "edn"],
+            "rootPatterns": ["project.clj", "deps.edn", ".git/"],
+            "initializationOptions": {
+                "clj-kondo-path": "/usr/local/bin/clj-kondo"
+            }
+        }
+    }
+}
+
