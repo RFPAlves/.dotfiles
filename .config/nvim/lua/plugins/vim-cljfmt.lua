@@ -1,1 +1,6 @@
-return { "venantius/vim-cljfmt" }
+return
+{
+  {
+    "venantius/vim-cljfmt"
+  }
+}

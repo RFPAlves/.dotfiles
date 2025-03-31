@@ -1,13 +1,9 @@
 require("configs.lazy")
 
---local lspconfig = require("lspconfig")
---lspconfig.clojure_lsp.setup{}
-
 vim.keymap.set({ 'n' }, '<C-s>', ':w<CR>')
 vim.keymap.set({ 'i' }, '<C-s>', '<C-o>:w<CR>')
 vim.keymap.set({ 'n' }, '<localleader>q', ':q<CR>')
 vim.keymap.set({ 'n' }, '<localleader>Q', ':qa<CR>')
-vim.keymap.set({ 'n' }, '<C-h>', '<C-w><C-h>')
 
 vim.cmd[[colorscheme tokyonight]]
 
@@ -35,4 +31,26 @@ vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+function cleanNamespace()
+  local file = "file://" .. vim.fn.expand('%:p')
+  local line = vim.fn.line('.') - 1
+  local column = vim.fn.col('.') - 1
+  local params = {
+    command = "clean-ns",
+    arguments = {file, line, column}
+  }
+
+  vim.lsp.buf.execute_command(params)
+end
+
+vim.api.nvim_create_user_command("CleanNS", function()
+  cleanNamespace()
+end, {})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.clj",
+  callback = function()
+    -- Format code before saving
+    vim.lsp.buf.format()
+  end,
+})
