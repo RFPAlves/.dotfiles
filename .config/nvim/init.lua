@@ -5,8 +5,6 @@ vim.keymap.set({ 'i' }, '<C-s>', '<C-o>:w<CR>')
 vim.keymap.set({ 'n' }, '<localleader>q', ':q<CR>')
 vim.keymap.set({ 'n' }, '<localleader>Q', ':qa<CR>')
 
-vim.cmd[[colorscheme tokyonight]]
-
 vim.opt.number = true
 vim.opt.backspace = '2'
 vim.opt.syntax = 'enable'
