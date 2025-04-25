@@ -21,7 +21,8 @@ return {
           "json",
           "lua",
           "markdown",
-          "yaml"
+          "yaml",
+          "go"
         }
       })
     end

@@ -20,6 +20,20 @@ return
         end,
         capabilities = require("cmp_nvim_lsp").default_capabilities()
       })
+
+      lspconfig.gopls.setup({
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
+      })
+
+      --vim.lsp.set_log_level("DEBUG")
     end
   }
 }
